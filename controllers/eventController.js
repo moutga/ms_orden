@@ -1,5 +1,4 @@
 const Sequelize = require("sequelize");
-// const Event = require("../models").Event;
 const Event = require("../models").event;
 
 module.exports = {

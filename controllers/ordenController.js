@@ -61,11 +61,10 @@ module.exports = {
 	listarOrdenes(req, res) {
 
 		let {query} = req; // parámetros pasados tipo ?param=value
-		//.o Renombra claves de la query para que no coincidan con campos de la BD
-		//.o si hay query
 		if( Object.keys(query).length !== 0 ){
-			//.o renombra idc por id_cliente
-			delete Object.assign(query, {id_cliente: query.idc})['idc'];
+			//.o Enmascara claves de la query para que no coincidan con campos de la BD
+			//@ delete Object.assign(query, {nuevaClave: query.viejaClave})['viejaClave'];
+			delete Object.assign(query, {id_cliente: query.idc})['idc']; //.o renombra idc por id_cliente
 		}
 
 		let buscar = { where: {} }; //.o inicio con búsqueda vacía
@@ -112,7 +111,7 @@ module.exports = {
 		if( !params.id ){
 			return res.status(404).send({ status: 404, message: "No existe la orden id: " + params.id });
 		}
-
+		
 		//.o***********************o./
 
 		orden.findAll({

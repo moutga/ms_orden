@@ -13,7 +13,7 @@ module.exports = (app) => {
 	
 	//@ Rutas para ORDEN
 	app.post(
-		"/api/orden/nueva/", // /orden/create/username/mute/status/69
+		"/api/orden/nueva/",
 		ordenController.nuevaOrden
 	);
 
@@ -21,8 +21,7 @@ module.exports = (app) => {
 
 	// //.o Ambas para recuperar orden por id
 	app.get("/api/orden/:id", ordenController.buscarOrden);
-	app.get("/api/orden/", ordenController.buscarOrden);
-	// app.get("/api/orden", ordenController.find); //.o por si viene como query ?id=X
+	app.get("/api/orden/", ordenController.buscarOrden); //.o por si viene como query ?id=X
 
 	//@ Rutas para EVENT
 	app.get("/api/notif/lista", eventController.listarNotificaciones);
