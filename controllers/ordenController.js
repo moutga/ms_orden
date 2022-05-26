@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const orden = require("../models").orden;
 const Event = require("../models").event;
+const nProducer = require("../kafka/producer.js"); 
 
 module.exports = {
 
@@ -40,14 +41,17 @@ module.exports = {
 				monto: body.monto,
 				direccion_envio: body.direccion_envio,
 
-			})
+		})
 		.then(async function(orden){
 
 			res.status(200).send(orden);
 			let notif = new Event();
 
 			try{
+
 				await notif.nuevaNotificacion(orden)
+				await nProducer.nuevaNotif(orden,'test')
+
 			} catch(e){
 				console.log("Error al crear la notificación: " + e);
 			}
