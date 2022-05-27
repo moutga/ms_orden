@@ -1,6 +1,9 @@
 const express = require("express");
+var fs = require('fs');
+var path = require('path')
 const logger = require("morgan");
 const bodyParser = require("body-parser");
+const consumer = require('./kafka/consumer.js');
 
 // This will be our application entry. We'll setup our server here.
 const http = require("http");
@@ -8,6 +11,9 @@ const http = require("http");
 const app = express();
 // Log requests to the console.
 app.use(logger("dev"));
+app.use(logger('common', {
+	stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+}))	
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());

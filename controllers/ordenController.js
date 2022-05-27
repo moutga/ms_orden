@@ -50,7 +50,7 @@ module.exports = {
 			try{
 
 				await notif.nuevaNotificacion(orden)
-				await nProducer.nuevaNotif(orden,'test')
+				await nProducer.nuevaNotif(orden, orden.id, 'test');
 
 			} catch(e){
 				console.log("Error al crear la notificación: " + e);
