@@ -9,15 +9,15 @@ const producer = kafka.producer({ createPartitioner: Partitioners.LegacyPartitio
 /**
  * Envía objMensaje vía el topic stringTopic
  * @param object objMensaje
- * @param integer intKey
+ * @param string stringKey
  * @param string stringTopic
  */
-async function nuevaNotif(objMensaje, intKey, stringTopic){
-	intKey = intKey.toString();
+async function nuevaNotif(objMensaje, stringKey, stringTopic){
+	stringKey = stringKey.toString();
 
 	objMensaje = JSON.stringify(objMensaje);
 	let messages = [
-		{ value: objMensaje, key: intKey },
+		{ value: objMensaje, key: stringKey },
 	];
 
 	await producer.connect()

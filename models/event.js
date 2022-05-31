@@ -7,13 +7,13 @@ module.exports = (sequelize, DataTypes) => {
 			// define association here
 		}
 
-		async nuevaNotificacion(orden){
+		async nuevaNotificacion(objNotif){
 
 			let notif = await Event.create({
-				objeto: orden.constructor.name,
-				id_objeto: orden.id,
+				objeto: objNotif.constructor.name,
+				id_objeto: objNotif.id,
 				estado: "NUEVA",
-				data: JSON.stringify( orden.dataValues )
+				data: JSON.stringify( objNotif.dataValues )
 			});
 
 			notif.save();

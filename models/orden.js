@@ -2,14 +2,32 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
 	class Orden extends Model {
-		/**
-		 * Helper method for defining associations.
-		 * This method is not a part of Sequelize lifecycle.
-		 * The `models/index` file will call this method automatically.
-		 */
+
 		static associate(models) {
 			// define association here
 		}
+
+		/**
+		 * Busca según criterios del objeto
+		 * @param {obj} objWhere
+		 * @returns {any}
+		 */
+		static async findWhere(objWhere){
+			objWhere = {where: objWhere};
+			let b = await Orden.findOne( objWhere );
+			return b;
+		}
+
+		/**
+		 * Cambia el status de una orden
+		 * @param string stringStatus
+		 * @returns {any}
+		 */
+		async cambiaStatus(stringStatus){
+			this.orden_status = stringStatus;
+			await this.save({ fields: ['orden_status'] });
+		}
+
 	}
 
 	Orden.init(

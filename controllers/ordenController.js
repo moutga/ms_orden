@@ -49,11 +49,12 @@ module.exports = {
 
 			try{
 
-				await notif.nuevaNotificacion(orden)
-				await nProducer.nuevaNotif(orden, orden.id, 'test');
+				await notif.nuevaNotificacion(orden) //a la BD
+				await nProducer.nuevaNotif(orden, orden.id, 'orden-topic'); //a kafka
 
 			} catch(e){
 				console.log("Error al crear la notificación: " + e);
+				res.status(400).send(e);
 			}
 
 		})

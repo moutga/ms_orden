@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path')
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-// const consumer = require('./kafka/consumer.js');
+require('./kafka/consumer.js');
 
 // This will be our application entry. We'll setup our server here.
 const http = require("http");
