@@ -10,7 +10,7 @@ const http = require("http");
 // Set up the express app
 const app = express();
 // Log requests to the console.
-app.use(logger("dev"));
+// app.use(logger("dev"));
 app.use(logger('common', {
 	stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 }))	
